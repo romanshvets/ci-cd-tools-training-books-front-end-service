@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="src/style.css">
+    <title>Books Dashboard</title>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <div id="title-group">
+                <h1>Books</h1>
+                <button id="help-btn" title="Help">?</button>
+            </div>
+            <button id="add-btn">+ Add Book</button>
+        </div>
+        <table id="books-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Publish Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="books-tbody"></tbody>
+        </table>
+    </div>
+
+    <dialog id="help-dialog">
+        <h2>Version</h2>
+        <table id="version-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Version</th>
+                    <th>Build Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Back-End</td>
+                    <td id="backend-version"></td>
+                    <td id="backend-build-time"></td>
+                </tr>
+                <tr>
+                    <td>Front-End</td>
+                    <td id="frontend-version"></td>
+                    <td id="frontend-build-time"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="help-dialog-actions">
+            <button id="help-ok-btn">Ok</button>
+        </div>
+    </dialog>
+
+    <dialog id="add-dialog">
+        <h2>Add Book</h2>
+        <form id="add-form" method="dialog" autocomplete="off">
+            <label>
+                Name
+                <input type="text" name="name" required/>
+            </label>
+            <label>
+                Author
+                <input type="text" name="author" required/>
+            </label>
+            <label>
+                Publish Date
+                <input type="date" name="publishDate" required/>
+            </label>
+            <div id="dialog-actions">
+                <button type="button" id="cancel-btn">Cancel</button>
+                <button type="submit">Create</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="edit-dialog">
+        <h2>Edit Book</h2>
+        <form id="edit-form" method="dialog" autocomplete="off">
+            <label>
+                Name
+                <input type="text" name="name" required/>
+            </label>
+            <label>
+                Author
+                <input type="text" name="author" required/>
+            </label>
+            <label>
+                Publish Date
+                <input type="date" name="publishDate" required/>
+            </label>
+            <div id="edit-dialog-actions">
+                <button type="button" id="edit-cancel-btn">Cancel</button>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
