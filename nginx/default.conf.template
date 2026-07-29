@@ -1,5 +1,5 @@
 server {
-  listen       ${NGINX_PORT};
+  listen       ${BOOKS_FRONT_SERVER_PORT};
 
   location / {
     root /usr/share/nginx/html;
@@ -10,7 +10,7 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-NginX-Proxy true;
-    proxy_pass http://host.docker.internal:8080/api;
+    proxy_pass ${BOOKS_BACK_API_URL};
     proxy_ssl_session_reuse off;
     proxy_set_header Host $http_host;
     proxy_cache_bypass $http_upgrade;
