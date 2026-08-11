@@ -7,6 +7,8 @@ pipeline {
 		DOCKER_HUB_USER = 'rshvets89'
 		IMAGE_NAME      = 'books-front-service'
 		IMAGE_TAG       = "${env.BUILD_NUMBER}"
+		BUILD_VERSION   = "${env.BUILD_NUMBER}"
+        BUILD_DATE      = "${new Date().format('yyyy-MM-dd HH:mm:ss')}"
 	}
 
 	stages {
@@ -23,7 +25,7 @@ pipeline {
 				echo 'Building ...'
 
 				script {
-					sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+					sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} --build-arg BUILD_VERSION=${BUILD_VERSION} --build-arg BUILD_DATE=\"${BUILD_DATE}\" ."
 
 					sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
 					sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
