@@ -14,8 +14,8 @@ RUN ["npm", "ci"]
 
 COPY index.html vite.config.js ./
 COPY src ./src
-RUN sed -i "s/%VERSION_PLACEHOLDER%/${BUILD_VERSION}/g" /src/meta.js
-RUN sed -i "s/%BUILD_DATE_PLACEHOLDER%/${BUILD_DATE}/g" /src/meta.js
+RUN sed -i "s/%VERSION_PLACEHOLDER%/${BUILD_VERSION}/g" ./src/meta.js
+RUN sed -i "s/%BUILD_DATE_PLACEHOLDER%/${BUILD_DATE}/g" ./src/meta.js
 RUN ["npm", "run", "build"]
 
 # RUNTIME STAGE
