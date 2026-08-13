@@ -12,6 +12,14 @@ pipeline {
 	}
 
 	stages {
+	    stage('Clean Up') {
+            steps {
+                echo 'Cleaning Up ...'
+                cleanWs()
+                echo 'Cleaned Up'
+            }
+        }
+
 		stage('Checkout') {
 			steps {
 				echo 'Checking out ...'
@@ -62,6 +70,12 @@ pipeline {
 	post {
         always {
             sh 'docker logout'
+        }
+
+        success {
+            sh "docker rmi -f ${IMAGE_NAME}:${IMAGE_TAG}"
+            sh "docker rmi -f ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
+            sh "docker rmi -f ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
         }
     }
 }
